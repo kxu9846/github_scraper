@@ -30,11 +30,11 @@ def main():
         24: nlohmann/json
         25: foxlet/macOS-Simple-KVM
     """
-    url = "https://github.com/trending"
-    get_content(url)   
+    URL = "https://github.com/trending"
+    get_content(URL)   
 
-def get_content(url):
-        content = urlopen(url).read()
+def get_content(URL):
+        content = urlopen(URL).read()
         soup = BeautifulSoup(content, "html.parser")
         articles = soup.find_all('article')
         print_content(articles)
