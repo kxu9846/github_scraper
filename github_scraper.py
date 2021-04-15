@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
+URL = "https://github.com/trending"
+
 def main():
     """
     Output:
@@ -30,10 +32,9 @@ def main():
         24: nlohmann/json
         25: foxlet/macOS-Simple-KVM
     """
-    URL = "https://github.com/trending"
-    get_content(URL)   
+    get_content()   
 
-def get_content(URL):
+def get_content():
         content = urlopen(URL).read()
         soup = BeautifulSoup(content, "html.parser")
         articles = soup.find_all('article')
