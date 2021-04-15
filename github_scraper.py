@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
-def main(url):
+def main():
     """
     Output:
         1: r4j0x00/exploits
@@ -30,25 +30,21 @@ def main(url):
         24: nlohmann/json
         25: foxlet/macOS-Simple-KVM
     """
+    url = "https://github.com/trending"
+    get_content(url)   
 
-    def getContent(url):
+def get_content(url):
         content = urlopen(url).read()
         soup = BeautifulSoup(content, "html.parser")
         articles = soup.find_all('article')
-        printContent(articles)
+        print_content(articles)
 
-    def printContent(articles):
-        count = 1
-        for article in articles:
-            title = article.h1.a['href'][1:]
-            print(str(count) + ": " + title)
-            count += 1
-    
-    return getContent(url)   
+def print_content(articles):
+    for idx, article in enumerate(articles):
+        title = article.h1.a['href'][1:]
+        print(str(idx+1) + ": " + title)
 
-url = "https://github.com/trending"
-
-main(url)
+main()
 
 
 
